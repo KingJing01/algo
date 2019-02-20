@@ -31,14 +31,15 @@ public class CountingSort {
     }
 
     // 依次累加
-    for (int i = 1; i < max + 1; ++i) {
+    for (int i = 1; i < max + 1; ++i) { //注：这个就很巧妙了，前一个加上自就是自己的和了，不过注意从1开始。
       c[i] = c[i-1] + c[i];
     }
 
     // 临时数组r，存储排序之后的结果
     int[] r = new int[n];
     // 计算排序的关键步骤了，有点难理解
-    for (int i = n - 1; i >= 0; --i) {
+    //注：关键在于，先依次遍历i，假设当前数值为a[i]=k，将k放入临时数组r中的：r[c[a[i]]-1]的位置，然后c[a[i]]-1，
+    for (int i = n - 1; i >= 0; --i) {  //注：这是倒着遍历？
       int index = c[a[i]]-1;
       r[index] = a[i];
       c[a[i]]--;

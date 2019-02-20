@@ -31,18 +31,18 @@ public class Sorts {
   public static void insertionSort(int[] a, int n) {
     if (n <= 1) return;
 
-    for (int i = 1; i < n; ++i) {
-      int value = a[i];
-      int j = i - 1;
+    for (int i = 1; i < n; ++i) {  //注：首元素不动，以后的依次比较（i表示的是未排序区间的开始索引；j表示的是已排序区间的开始索引）
+      int value = a[i];  //注：取需要移动的值
+      int j = i - 1;  //注：找到之前已排序区间的元素个数
       // 查找要插入的位置并移动数据
-      for (; j >= 0; --j) {
+      for (; j >= 0; --j) {  //注：这相当于是倒着遍历已排序区间
         if (a[j] > value) {
-          a[j+1] = a[j];
+          a[j+1] = a[j]; //数据移动。注：如果数值较小 每次都进行后移（不是交换，只有移动），将较大值移到后面 ；如果无需移动，则跳出循环
         } else {
-          break;
+          break;  //注：比较符合，跳出循环
         }
       }
-      a[j+1] = value;
+      a[j+1] = value; // 注：插入数据（要排序的数）
     }
   }
 
