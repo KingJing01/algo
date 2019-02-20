@@ -8,6 +8,7 @@ package linkedlist;
  */
 public class SinglyLinkedList {
 
+    //注：头节点
     private Node head = null;
 
     public Node findByValue(int value) {
@@ -61,7 +62,7 @@ public class SinglyLinkedList {
             while(q.next != null){
                 q = q.next;
             }
-            newNode.next = q.next;
+            newNode.next = q.next; //注：这一行代码好像也是废的，只是因为在尾部插入时，尾结点本身就是空。
             q.next = newNode;
         }
     }
@@ -90,6 +91,7 @@ public class SinglyLinkedList {
         }
 
         Node q = head;
+        //注：找到P的前置节点q
         while (q != null && q.next != p) {
             q = q.next;
         }
@@ -193,7 +195,7 @@ public class SinglyLinkedList {
            return false;
         }
     }
-    //　判断是否为回文 
+    //　判断是否为回文
 
     public boolean palindrome(){
        if (head == null){
@@ -208,7 +210,7 @@ public class SinglyLinkedList {
            }
            while( q.next != null && q.next.next != null){
                p = p.next;
-               q = q.next.next;
+               q = q.next.next; //注：每次移动2个
 
            }
 
@@ -216,14 +218,14 @@ public class SinglyLinkedList {
            System.out.println("开始执行奇数节点的回文判断");
            Node leftLink = null;
            Node rightLink = null;
-           if(q.next == null){
+           if(q.next == null){//注：奇数个情况
                //　p 一定为整个链表的中点，且节点数目为奇数
                rightLink = p.next;
                leftLink = inverseLinkList(p).next;
                System.out.println("左边第一个节点"+leftLink.data);
                System.out.println("右边第一个节点"+rightLink.data);
 
-           }else{
+           }else{//注：偶数个情况
                //p q　均为中点
                rightLink = p.next;
                leftLink = inverseLinkList(p);
@@ -269,12 +271,13 @@ public class SinglyLinkedList {
         Node r = head;
         System.out.println("z---" + r.data);
         Node next= null;
+        //注：从头节点开始反转
         while(r !=p){
             next = r.next;
 
-            r.next = pre;
+            r.next = pre;//注：反转
             pre = r;
-            r = next;
+            r = next; //注：r后移
         }
 
         r.next = pre;
@@ -283,14 +286,14 @@ public class SinglyLinkedList {
         return r;
 
     }
-    
+
     public static Node createNode(int value) {
         return new Node(value, null);
     }
 
     public static class Node {
-        private int data;
-        private Node next;
+        private int data;//注：节点存放的数据
+        private Node next;//注：节点的后置节点
 
         public Node(int data, Node next) {
             this.data = data;
@@ -303,7 +306,7 @@ public class SinglyLinkedList {
     }
     public static void main(String[]args){
 
-        SinglyLinkedList link = new SinglyLinkedList(); 
+        SinglyLinkedList link = new SinglyLinkedList();
         System.out.println("hello");
         //int data[] = {1};
         //int data[] = {1,2};

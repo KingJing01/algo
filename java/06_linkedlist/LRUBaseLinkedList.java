@@ -17,7 +17,7 @@ public class LRUBaseLinkedList<T> {
     private final static Integer DEFAULT_CAPACITY = 10;
 
     /**
-     * 头结点
+     * 头结点（注：单独保存）
      */
     private SNode<T> headNode;
 
@@ -72,7 +72,7 @@ public class LRUBaseLinkedList<T> {
     }
 
     /**
-     * 链表头部插入节点
+     * 链表头部插入节点（注：链表的头结点是一个特殊的节点：不变的一个节点）
      *
      * @param data
      */
@@ -83,7 +83,7 @@ public class LRUBaseLinkedList<T> {
     }
 
     /**
-     * 获取查找到元素的前一个结点
+     * 获取查找到元素的前一个结点（注：每次都需要从头开始遍历）
      *
      * @param data
      * @return
@@ -114,9 +114,10 @@ public class LRUBaseLinkedList<T> {
             ptr = ptr.getNext();
         }
 
-        SNode tmp = ptr.getNext();
-        ptr.setNext(null);
-        tmp = null;
+        //注：ptr.getNext().getNext() == null的情况
+        SNode tmp = ptr.getNext(); //注：这行代码是不是没用？
+        ptr.setNext(null);//注：倒数第二个节点变为倒数第一个节点
+        tmp = null; //注：这行代码是不是没用？
         length--;
     }
 

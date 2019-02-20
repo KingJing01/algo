@@ -14,12 +14,15 @@ public class LRUBasedArray<T> {
 
     private static final int DEFAULT_CAPACITY = (1 << 3);
 
+    //注：容量
     private int capacity;
 
+    //注：实际个数
     private int count;
 
     private T[] value;
 
+    //注：存放：<数据，索引位置>
     private Map<T, Integer> holder;
 
     public LRUBasedArray() {
@@ -46,6 +49,7 @@ public class LRUBasedArray<T> {
             if (isFull()) {
                 removeAndCache(object);
             } else {
+                //注：count是实际个数，即数组的最后一个有效元素
                 cache(object, count);
             }
         } else {
@@ -92,8 +96,8 @@ public class LRUBasedArray<T> {
      */
     private void rightShift(int end) {
         for (int i = end - 1; i >= 0; i--) {
-            value[i + 1] = value[i];
-            holder.put(value[i], i + 1);
+            value[i + 1] = value[i]; //注：右移
+            holder.put(value[i], i + 1); //注：右移之后，重新更新Map中的数据
         }
     }
 
